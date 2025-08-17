@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import jwt from "jsonwebtoken";
-
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: "30d"
-    });
-};
-
-export default generateToken;
-=======
 const jwt = require("jsonwebtoken");
 
 const generateToken = (user) => {
@@ -19,4 +8,3 @@ const generateToken = (user) => {
 };
 
 module.exports = generateToken;
->>>>>>> 7a33cc039476f55e05502a1b88292c5fc926cbb6
