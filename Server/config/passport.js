@@ -1,9 +1,9 @@
-const passport = require("passport");
+const passport = require("passport"); 
 const LocalStrategy = require("passport-local").Strategy;
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const User = require("../models/User");
 
-// Local strategy (email + password)
+
 passport.use(
   new LocalStrategy(
     { usernameField: "email", passwordField: "password", session: false },
@@ -23,12 +23,15 @@ passport.use(
   )
 );
 
-// JWT strategy (protect routes)
+
+const secret = process.env.JWT_SECRET || "fallback_secret";
+console.log("JWT_SECRET being used:", secret);
+
 passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.JWT_SECRET,
+      secretOrKey: secret,
     },
     async (payload, done) => {
       try {
