@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+import http from "http";
+import { Server } from "socket.io";
+import app from "./app.js";
+
+const PORT = process.env.PORT || 5000;
+
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
+
+io.on("connection", (socket) => {
+    console.log("A user connected");
+    socket.on("disconnect", () => console.log("A user disconnected"));
+});
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+=======
 // Load env vars FIRST
 require("dotenv").config();
 
@@ -34,3 +56,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () =>
   console.log(`🚀 Server running on http://localhost:${PORT}`)
 );
+>>>>>>> 7a33cc039476f55e05502a1b88292c5fc926cbb6
